@@ -38,4 +38,8 @@ public class Member extends Orang {
     public String getStatus() {
         return "Member";
     }
+    
+    public String toString(){
+        return "Username : " + username + " | Nama : "  + super.getNama() + " | Umur : " + super.getUmur() +"  tahun.";
+    }
 }

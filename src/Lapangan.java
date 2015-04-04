@@ -34,7 +34,14 @@ public abstract class Lapangan {
     }
 
     public Jadwal getJadwal(int hari, int shift) {
-        return jadwal[hari][shift];
+        Jadwal x = null;
+        try {
+            x = jadwal[hari][shift];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            //Melempar Kesalahan akses indeks Array
+            throw new ArrayIndexOutOfBoundsException("Kesalahan Akses Indeks Array Jadwal");
+        }
+        return x;
     }
 
     public abstract double getHarga();
