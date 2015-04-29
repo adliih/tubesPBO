@@ -26,7 +26,6 @@ public class Driver {
 //		tf.getLapangan(0).getJadwal(0,1).DP();
 //		System.out.println(tf.getLapangan(0).getJadwal(0,1).getLogBook());
 //		tf.getLapangan(1).getJadwal(0,1).addPenyewa(m1);
-        int ab;
         int pil = -1;
         Orang orangAktif = null;
         TempatFutsal ivi = new TempatFutsal("Ivi", "Sukabirus");
