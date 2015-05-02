@@ -5,6 +5,7 @@ public abstract class Lapangan {
     private double panjang;
     private Jadwal[][] jadwal;
     private double harga;
+    private int id_lapangan;
 
     public Lapangan(double lebar, double panjang) {
         this.lebar = lebar;
@@ -31,6 +32,14 @@ public abstract class Lapangan {
 
     public double getPanjang() {
         return panjang;
+    }
+
+    public int getId_lapangan() {
+        return id_lapangan;
+    }
+
+    public void setId_lapangan(int id_lapangan) {
+        this.id_lapangan = id_lapangan;
     }
 
     public Jadwal getJadwal(int hari, int shift) {
