@@ -1,3 +1,10 @@
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -28,17 +35,31 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        DialogLogin = new javax.swing.JDialog();
+        fieldUsername = new javax.swing.JTextField();
+        fieldPassword = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        btnLoginPopUp = new javax.swing.JButton();
         Utama = new javax.swing.JPanel();
         Home = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelLapangan = new javax.swing.JTable();
-        Login = new javax.swing.JPanel();
-        fieldUsername = new javax.swing.JTextField();
-        fieldPassword = new javax.swing.JTextField();
-        btnLogin1 = new javax.swing.JButton();
         Admin = new javax.swing.JPanel();
         KelolaLapangan = new javax.swing.JPanel();
+        jSpinner2 = new javax.swing.JSpinner();
+        jSpinner3 = new javax.swing.JSpinner();
+        jTextField5 = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         KelolaMember = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
@@ -56,14 +77,62 @@ public class GUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        KelolaPenyewa = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        KelolaJadwal = new javax.swing.JPanel();
+        jComboBox2 = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        Member = new javax.swing.JPanel();
         Toolbar = new javax.swing.JPanel();
         btnLogin = new javax.swing.JButton();
         btnHome = new javax.swing.JButton();
         btnMember = new javax.swing.JButton();
         btnLapangan = new javax.swing.JButton();
         btnPenyewa = new javax.swing.JButton();
+
+        DialogLogin.setTitle("Login\n");
+
+        jLabel3.setText("Username");
+
+        jLabel10.setText("Password");
+
+        btnLoginPopUp.setText("Login");
+
+        javax.swing.GroupLayout DialogLoginLayout = new javax.swing.GroupLayout(DialogLogin.getContentPane());
+        DialogLogin.getContentPane().setLayout(DialogLoginLayout);
+        DialogLoginLayout.setHorizontalGroup(
+            DialogLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogLoginLayout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addGroup(DialogLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnLoginPopUp)
+                    .addGroup(DialogLoginLayout.createSequentialGroup()
+                        .addGroup(DialogLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(DialogLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                            .addComponent(fieldUsername))))
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+        DialogLoginLayout.setVerticalGroup(
+            DialogLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogLoginLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(DialogLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DialogLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(18, 18, 18)
+                .addComponent(btnLoginPopUp)
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,7 +162,7 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(HomeLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(467, Short.MAX_VALUE))
+                .addContainerGap(483, Short.MAX_VALUE))
             .addGroup(HomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -111,59 +180,95 @@ public class GUI extends javax.swing.JFrame {
 
         Utama.add(Home, "card2");
 
-        Login.setBackground(new java.awt.Color(255, 255, 255));
-
-        fieldUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        fieldPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        fieldPassword.setText("Password");
-        fieldPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        btnLogin1.setText("Login");
-        btnLogin1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogin1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout LoginLayout = new javax.swing.GroupLayout(Login);
-        Login.setLayout(LoginLayout);
-        LoginLayout.setHorizontalGroup(
-            LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginLayout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLogin1)
-                    .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(fieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(214, Short.MAX_VALUE))
-        );
-        LoginLayout.setVerticalGroup(
-            LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginLayout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(fieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLogin1)
-                .addContainerGap(150, Short.MAX_VALUE))
-        );
-
-        Utama.add(Login, "card3");
-
         Admin.setLayout(new java.awt.CardLayout());
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
+        jLabel1.setText("Panjang");
+
+        jLabel2.setText("Lebar");
+
+        jLabel8.setText("Harga");
+
+        jButton6.setText("Add");
+
+        jButton7.setText("Edit");
+
+        jButton8.setText("Cancel");
+
+        jButton9.setText("Delete");
 
         javax.swing.GroupLayout KelolaLapanganLayout = new javax.swing.GroupLayout(KelolaLapangan);
         KelolaLapangan.setLayout(KelolaLapanganLayout);
         KelolaLapanganLayout.setHorizontalGroup(
             KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGroup(KelolaLapanganLayout.createSequentialGroup()
+                .addGroup(KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(KelolaLapanganLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(81, 81, 81))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KelolaLapanganLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(KelolaLapanganLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(KelolaLapanganLayout.createSequentialGroup()
+                                .addComponent(jButton6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton9)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         KelolaLapanganLayout.setVerticalGroup(
             KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 365, Short.MAX_VALUE)
+            .addGroup(KelolaLapanganLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(KelolaLapanganLayout.createSequentialGroup()
+                        .addGroup(KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(7, 7, 7)
+                        .addGroup(KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(107, 107, 107)
+                        .addGroup(KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton8)
+                            .addComponent(jButton9)
+                            .addComponent(jButton7)
+                            .addComponent(jButton6))))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         Admin.add(KelolaLapangan, "card3");
@@ -230,7 +335,7 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)))
                 .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(KelolaMemberLayout.createSequentialGroup()
@@ -277,28 +382,76 @@ public class GUI extends javax.swing.JFrame {
 
         Admin.add(KelolaMember, "card2");
 
-        jLabel3.setText("KelolaPenyewa");
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        javax.swing.GroupLayout KelolaPenyewaLayout = new javax.swing.GroupLayout(KelolaPenyewa);
-        KelolaPenyewa.setLayout(KelolaPenyewaLayout);
-        KelolaPenyewaLayout.setHorizontalGroup(
-            KelolaPenyewaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(KelolaPenyewaLayout.createSequentialGroup()
-                .addGap(273, 273, 273)
-                .addComponent(jLabel3)
-                .addContainerGap(264, Short.MAX_VALUE))
+        jLabel9.setText("Lapangan");
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable3);
+
+        jButton10.setText("Booking");
+
+        jButton11.setText("Status DP");
+
+        javax.swing.GroupLayout KelolaJadwalLayout = new javax.swing.GroupLayout(KelolaJadwal);
+        KelolaJadwal.setLayout(KelolaJadwalLayout);
+        KelolaJadwalLayout.setHorizontalGroup(
+            KelolaJadwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(KelolaJadwalLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(KelolaJadwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(KelolaJadwalLayout.createSequentialGroup()
+                        .addComponent(jButton10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton11))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
-        KelolaPenyewaLayout.setVerticalGroup(
-            KelolaPenyewaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KelolaPenyewaLayout.createSequentialGroup()
-                .addContainerGap(181, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(170, 170, 170))
+        KelolaJadwalLayout.setVerticalGroup(
+            KelolaJadwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(KelolaJadwalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(KelolaJadwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(KelolaJadwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton10)
+                    .addComponent(jButton11))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        Admin.add(KelolaPenyewa, "card4");
+        Admin.add(KelolaJadwal, "card4");
 
         Utama.add(Admin, "card4");
+
+        javax.swing.GroupLayout MemberLayout = new javax.swing.GroupLayout(Member);
+        Member.setLayout(MemberLayout);
+        MemberLayout.setHorizontalGroup(
+            MemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 625, Short.MAX_VALUE)
+        );
+        MemberLayout.setVerticalGroup(
+            MemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 365, Short.MAX_VALUE)
+        );
+
+        Utama.add(Member, "card5");
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -328,7 +481,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        btnPenyewa.setText("Penyewa");
+        btnPenyewa.setText("Jadwal");
         btnPenyewa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPenyewaActionPerformed(evt);
@@ -384,15 +537,8 @@ public class GUI extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        if (btnLogin.getText().equals("Login")) {
-            Login.setVisible(true);
-            Home.setVisible(false);
-        } else {
-            status = 0;
-            btnLogin.setText("Login");
-            cekmenu();
-        }
-
+        DialogLogin.setSize(400 , 275);
+        DialogLogin.setVisible(true);
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -402,38 +548,25 @@ public class GUI extends javax.swing.JFrame {
     
     }//GEN-LAST:event_btnHomeActionPerformed
 
-    private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
-        // TODO add your handling code here:
-        String user = fieldUsername.getText();
-        String pass = fieldPassword.getText();
-        if ((user.equals("admin")) && (pass.equals("admin"))) {
-            Login.setVisible(false);
-            status = 1;
-            btnLogin.setText("Logout");
-            cekmenu();
-        }
-
-    }//GEN-LAST:event_btnLogin1ActionPerformed
-
     private void btnMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMemberActionPerformed
         // TODO add your handling code here:
         KelolaLapangan.setVisible(false);
         KelolaMember.setVisible(true);
-        KelolaPenyewa.setVisible(false);
+        KelolaJadwal.setVisible(false);
     }//GEN-LAST:event_btnMemberActionPerformed
 
     private void btnLapanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapanganActionPerformed
         // TODO add your handling code here:
         KelolaLapangan.setVisible(true);
         KelolaMember.setVisible(false);
-        KelolaPenyewa.setVisible(false);
+        KelolaJadwal.setVisible(false);
     }//GEN-LAST:event_btnLapanganActionPerformed
 
     private void btnPenyewaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenyewaActionPerformed
         // TODO add your handling code here:
         KelolaLapangan.setVisible(false);
         KelolaMember.setVisible(false);
-        KelolaPenyewa.setVisible(true);
+        KelolaJadwal.setVisible(true);
     }//GEN-LAST:event_btnPenyewaActionPerformed
 
     /**
@@ -491,43 +624,65 @@ public class GUI extends javax.swing.JFrame {
             Admin.setVisible(false);
         }
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Admin;
+    private javax.swing.JDialog DialogLogin;
     private javax.swing.JPanel Home;
+    private javax.swing.JPanel KelolaJadwal;
     private javax.swing.JPanel KelolaLapangan;
     private javax.swing.JPanel KelolaMember;
-    private javax.swing.JPanel KelolaPenyewa;
-    private javax.swing.JPanel Login;
+    private javax.swing.JPanel Member;
     private javax.swing.JTable TabelLapangan;
     private javax.swing.JPanel Toolbar;
     private javax.swing.JPanel Utama;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLapangan;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnLogin1;
+    private javax.swing.JButton btnLoginPopUp;
     private javax.swing.JButton btnMember;
     private javax.swing.JButton btnPenyewa;
-    private javax.swing.JTextField fieldPassword;
+    private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JTextField fieldUsername;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

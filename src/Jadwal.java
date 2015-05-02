@@ -4,6 +4,7 @@ public class Jadwal {
     private Member penyewa;
     private boolean statusDP = false;
     protected String logBook = "LOGBOOK";
+    private int id_jadwal;
 
     public void addPenyewa(Member member) {
         if (penyewa != null){
@@ -23,7 +24,16 @@ public class Jadwal {
     public String getLogBook() {
         return logBook;
     }
+
+    public int getId_jadwal() {
+        return id_jadwal;
+    }
+
+    public void setId_jadwal(int id_jadwal) {
+        this.id_jadwal = id_jadwal;
+    }
     
+      
     /*
     Menampilkan Status Dari Lapangan (Tersedia/disewa/sudah dibooking)
     */
