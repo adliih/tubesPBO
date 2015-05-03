@@ -13,19 +13,19 @@ import java.util.ArrayList;
  * @author adliih
  */
 public class Database {
-    private String dbuser,dbpass,dbname;
+    private String dbuser,dbpass,dburl;
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet = null;
 
-    public Database(String dbname, String dbuser, String dbpass) {
+    public Database(String dburl, String dbuser, String dbpass) {
         this.dbuser = dbuser;
         this.dbpass = dbpass;
-        this.dbname = dbname;
+        this.dburl = dburl;
     }
     
     public void connect() throws SQLException, ClassNotFoundException{
-        connection = DriverManager.getConnection("jdbc:mysql://localhost/" + dbname, dbuser, dbpass);
+        connection = DriverManager.getConnection("jdbc:mysql://" + dburl, dbuser, dbpass);
         statement = connection.createStatement();
     }
     
