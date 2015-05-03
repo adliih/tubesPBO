@@ -29,6 +29,15 @@ public class Jadwal {
     public void setId_jadwal(int id_jadwal) {
         this.id_jadwal = id_jadwal;
     }
+
+    public void setPenyewa(Member penyewa) {
+        this.penyewa = penyewa;
+    }
+
+    public void setStatusDP(boolean statusDP) {
+        this.statusDP = statusDP;
+    }
+    
     
       
     /*

@@ -127,7 +127,7 @@ public class Database {
     
     public void changeDP(int hari, int shift, Lapangan l) throws SQLException{
         String sql;
-        sql = "INSERT jadwal_lapangan SET isDP = TRUE WHERE id_lapangan = " + l.getId_lapangan() + " AND id_jadwal = (SELECT id_jadwal FROM jadwal WHERE hari = " + hari + " AND shift = " + shift + ")";
+        sql = "UPDATE jadwal_lapangan SET isDP = TRUE WHERE id_lapangan = " + l.getId_lapangan() + " AND id_jadwal = (SELECT id_jadwal FROM jadwal WHERE hari = " + hari + " AND shift = " + shift + ")";
         statement.execute(sql);
     }
     
@@ -137,7 +137,7 @@ public class Database {
         statement.execute(sql);
     }
     
-    public void loadJadwalLapangan(Lapangan l) throws SQLException{
+    public void loadJadwalLapangan(TempatFutsal tf, Lapangan l) throws SQLException{
         String sql;
         sql =   "SELECT jadwal_lapangan.id_jadwal, jadwal_lapangan.isDP, jadwal.hari, jadwal.shift, member.username \n" +
                 "FROM jadwal_lapangan \n" +
@@ -151,10 +151,11 @@ public class Database {
             String username = resultSet.getString("username");
             int id_jadwal = resultSet.getInt("id_jadwal");
             boolean isDP = resultSet.getBoolean("isDP");
-            l.getJadwal(hari, shift).addPenyewa(searchMember(username));
+            Member m = tf.getMember(tf.searchMember(username));
+            l.getJadwal(hari, shift).setPenyewa(m);
 //            l.getJadwal(hari, shift).setId_jadwal(id_jadwal);
             if (isDP){
-                l.getJadwal(hari, shift).DP();
+                l.getJadwal(hari, shift).setStatusDP(true);
             }
         }        
     }
