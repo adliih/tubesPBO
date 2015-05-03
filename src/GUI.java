@@ -2,10 +2,13 @@
 import java.awt.*;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ListDataListener;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,20 +28,21 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
         cekmenu();
         setupDatabase();
+        refreshLapangan();
     }
-    
-    public void setupDatabase(){
+
+    public void setupDatabase() {
         FileIO fileIO = new FileIO();
         try {
             boolean valid = true;
             String[] dbSetup = fileIO.loadDatabaseSetup();
             for (String dbSetup1 : dbSetup) {
-                if (dbSetup1.isEmpty()){
+                if (dbSetup1.isEmpty()) {
                     valid = false;
                     break;
                 }
             }
-            if (!valid){
+            if (!valid) {
                 throw new IllegalArgumentException("Setup Database Belum Terisi. Silahkan Edit File Database Setup.txt");
             }
             db = new Database(dbSetup[0], dbSetup[1], dbSetup[2]);
@@ -56,6 +60,7 @@ public class GUI extends javax.swing.JFrame {
      */
     private Orang OrangAktif = null;
     private Database db;
+    private TempatFutsal tf = new TempatFutsal("Tempat Futsal Seger", "I-53");
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -73,6 +78,7 @@ public class GUI extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelLapangan = new javax.swing.JTable();
+        jButtonPesanBatal = new javax.swing.JButton();
         Admin = new javax.swing.JPanel();
         KelolaLapangan = new javax.swing.JPanel();
         jSpinner2 = new javax.swing.JSpinner();
@@ -181,20 +187,37 @@ public class GUI extends javax.swing.JFrame {
 
         Home.setBackground(new java.awt.Color(255, 255, 255));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vinyl", "Sintesis" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         TabelLapangan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        TabelLapangan.setColumnSelectionAllowed(true);
+        TabelLapangan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabelLapanganMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TabelLapangan);
+
+        jButtonPesanBatal.setText("Pesan");
+        jButtonPesanBatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesanBatalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
         Home.setLayout(HomeLayout);
@@ -203,20 +226,24 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(HomeLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(483, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonPesanBatal)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(HomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
                 .addContainerGap())
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonPesanBatal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         Utama.add(Home, "card2");
@@ -675,6 +702,77 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code he
     }//GEN-LAST:event_btnLoginPopUpKeyPressed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void TabelLapanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelLapanganMouseClicked
+        // TODO add your handling code here:
+//        JOptionPane.showMessageDialog(rootPane, "Anda Memilih " + (TabelLapangan.getSelectedColumn()-1) + " " + TabelLapangan.getSelectedRow());
+        int hari = TabelLapangan.getSelectedColumn()-1;
+        if (hari > 0){
+            Lapangan lapanganTerpilih = tf.getLapangan(jComboBox1.getSelectedIndex());
+            int shift = TabelLapangan.getSelectedRow();
+            if (OrangAktif == null){
+                jButtonPesanBatal.setVisible(false);
+            } else if (lapanganTerpilih.getJadwal(hari, shift).getPenyewa() == null) {
+                jButtonPesanBatal.setText("Pesan");
+                jButtonPesanBatal.setVisible(true);
+            } else if ((lapanganTerpilih.getJadwal(hari, shift).getPenyewa().equals(OrangAktif)) ){
+                jButtonPesanBatal.setText("Batal");
+                jButtonPesanBatal.setVisible(true);
+            } 
+        }
+    }//GEN-LAST:event_TabelLapanganMouseClicked
+
+    private void jButtonPesanBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesanBatalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonPesanBatalActionPerformed
+
+    public void refreshLapangan() {
+        jComboBox1.removeAllItems();
+        ArrayList<Lapangan> listLapangan = null;
+        try {
+            listLapangan = db.loadLapangan();
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(rootPane, e.getMessage());
+        }
+        int counter = 0;
+        //Mengisi llistLapangan dari Tempat Futsal
+        for (Lapangan listLapangan1 : listLapangan) {
+            int jenis = 0;
+            if (listLapangan1 instanceof Vinyl) {
+                jenis = 1;
+            }
+            tf.createLapangan(jenis, listLapangan1.getLebar(), listLapangan1.getPanjang());
+            tf.getLapangan(counter).setId_lapangan(listLapangan1.getId_lapangan());
+            try {
+                db.loadJadwalLapangan(tf.getLapangan(counter));
+            } catch (SQLException ex) {
+            }
+            counter++;
+        }
+        for (int i = 0; i < tf.getJumlahLapangan(); i++) {
+            jComboBox1.addItem(tf.getLapangan(i).toString());
+        }
+        jComboBox1.setSelectedIndex(0);
+        refreshJadwalLapangan(jComboBox1.getSelectedIndex());
+    }
+
+    public void refreshJadwalLapangan(int indexLapangan) {
+        String[] title = {"Jam\\Hari", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"};
+        String[][] data = new String[17][title.length];
+        Lapangan lap = tf.getLapangan(indexLapangan);
+        for (int i = 0; i < 17; i++) {
+            String shift = (i + 7) + ".00";
+            data[i][0] = shift;
+            for (int j = 0; j < 7; j++) {
+                data[i][j+1] = lap.getJadwal(j, i).toString();
+            }
+        }
+        TabelLapangan.setModel(new DefaultTableModel(data, title));
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -721,17 +819,20 @@ public class GUI extends javax.swing.JFrame {
             btnLogin.setText("Logout");
         }
         if (OrangAktif == null) {
+            jButtonPesanBatal.setVisible(false);
             btnMember.setVisible(false);
             btnLapangan.setVisible(false);
             btnJadwal.setVisible(false);
             Admin.setVisible(false);
         } else if (OrangAktif.getStatus().equals("Admin")) {
+            jButtonPesanBatal.setVisible(false);
             Home.setVisible(false);
             btnMember.setVisible(true);
             btnLapangan.setVisible(true);
             btnJadwal.setVisible(true);
             Admin.setVisible(true);
         } else if (OrangAktif.getStatus().equals("Member")) {
+            jButtonPesanBatal.setVisible(true);
             Home.setVisible(false);
             btnMember.setVisible(false);
             btnLapangan.setVisible(false);
@@ -773,6 +874,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonPesanBatal;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;

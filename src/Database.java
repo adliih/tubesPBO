@@ -93,7 +93,7 @@ public class Database {
                 lap = new Sintetis(resultSet.getFloat("lebar"), resultSet.getFloat("panjang"));
             }
             lap.setId_lapangan(resultSet.getInt("id_lapangan"));
-            loadJadwalLapangan(lap);
+//            loadJadwalLapangan(lap);
             listLapangan.add(lap);
         }
         return listLapangan;
@@ -138,20 +138,23 @@ public class Database {
     
     public void loadJadwalLapangan(Lapangan l) throws SQLException{
         String sql;
-        sql =   "SELECT jadwal_lapangan.id_jadwal, jadwal.hari, jadwal.shift, member.username \n" +
+        sql =   "SELECT jadwal_lapangan.id_jadwal, jadwal_lapangan.isDP, jadwal.hari, jadwal.shift, member.username \n" +
                 "FROM jadwal_lapangan \n" +
                 "JOIN jadwal ON jadwal_lapangan.id_jadwal = jadwal.id_jadwal \n" +
                 "JOIN member ON jadwal_lapangan.id_member = member.id_member\n" +
                 "WHERE jadwal_lapangan.id_lapangan = " + l.getId_lapangan();
-        System.out.println(sql);
         resultSet = statement.executeQuery(sql);
         while (resultSet.next()) {
             int hari = resultSet.getInt("hari");
             int shift = resultSet.getInt("shift");
             String username = resultSet.getString("username");
             int id_jadwal = resultSet.getInt("id_jadwal");
+            boolean isDP = resultSet.getBoolean("isDP");
             l.getJadwal(hari, shift).addPenyewa(searchMember(username));
-            l.getJadwal(hari, shift).setId_jadwal(id_jadwal);
+//            l.getJadwal(hari, shift).setId_jadwal(id_jadwal);
+            if (isDP){
+                l.getJadwal(hari, shift).DP();
+            }
         }        
     }
 }

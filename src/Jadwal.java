@@ -1,7 +1,7 @@
 
 public class Jadwal {
 
-    private Member penyewa;
+    private Member penyewa = null;
     private boolean statusDP = false;
     protected String logBook = "LOGBOOK";
     private int id_jadwal;
@@ -15,9 +15,6 @@ public class Jadwal {
     }
 
     public Member getPenyewa() {
-        if (penyewa == null){
-            throw new IllegalArgumentException("Jadwal Masih Belum Disewa"); 
-        }
         return penyewa;
     }
 

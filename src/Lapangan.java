@@ -54,5 +54,8 @@ public abstract class Lapangan {
     }
 
     public abstract double getHarga();
-
+    
+    public String toString(){
+        return getClass().toString().substring(6) + " [" + getId_lapangan() +"]";
+    }
 }

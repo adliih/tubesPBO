@@ -39,10 +39,17 @@ public class TempatFutsal {
         this.id_tempat_futsal = id_tempat_futsal;
     }
     
+    public int getJumlahLapangan(){
+        return listLapangan.size();
+    }
+    
+    public int getJumlahMember(){
+        return listMember.size();
+    }
     
 //    Membuat Lapangan Baru
-//    1 = Lapangan Sintetis
-//    2 = Lapangan Vinyl
+//    0 = Lapangan Sintetis
+//    1 = Lapangan Vinyl
     public void createLapangan(int x, double lebar, double panjang) {
         //Mencoba menambah array lapangan
         if (x == 0) {
