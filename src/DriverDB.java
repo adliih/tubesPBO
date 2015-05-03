@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.xml.crypto.Data;
@@ -18,47 +19,20 @@ public class DriverDB {
         Database db = new Database("db_PBO_Tubes", "root", "2354");
         db.connect();
         ArrayList<Member> listMember = new ArrayList<>();
-        try {
-            Member m;
-//            db.addMember(m);
-//            m = new Member("andrids", "1111", "Andri Dhika", 21);
-//            db.addMember(m);
-            listMember = db.loadMember();
-            for (Member listMember1 : listMember) {
-                System.out.println(listMember1.toString());
-            }
-//        db.deleteMember(listMember.get(0));
-//            m = listMember.get(0);
-//            m.setNama("CIACIA");
-//            db.updateMember(m);
-
-//            m = db.searchMember("andrids");
-//            System.out.println(m.toString());
-
-            Lapangan l = new Vinyl(69, 69);
-            db.addLapangan(l);
-            
-            ArrayList<Lapangan> listLapangan = db.loadLapangan();
-            for (Lapangan listLapangan1 : listLapangan) {
-                System.out.println(listLapangan1.getId_lapangan());
-                System.out.println(listLapangan1.toString());
-            }
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+        Member m;
+        m = new Member("andrids", "1111", "Andri Dhika", 21);
+        listMember = db.loadMember();
+        for (Member listMember1 : listMember) {
+            System.out.println(listMember1.toString());
         }
-//        m.setNama("Hilda");
-//        db.updateMember(m, 3);
-//        listMember = db.searchMember("hilda");
-//        System.out.println("Hasil Pencarian hilda");
-//        for (Member listMember1 : listMember) {
-//            System.out.println(listMember1.toString());   
-//        }
-//        Lapangan lap = new Sintetis(90, 220);
-//        db.addLapangan(tf, lap);
-//        ArrayList<Lapangan> listLapangan = db.loadLapangan(tf);
-//        for (Lapangan listLapangan1 : listLapangan) {
-//            System.out.println(listLapangan1.toString());
-//        }
-
+        m = listMember.get(0);
+        Lapangan l = new Vinyl(69, 69);
+        ArrayList<Lapangan> listLapangan = db.loadLapangan();
+        for (Lapangan listLapangan1 : listLapangan) {
+            System.out.println(listLapangan1.getId_lapangan());
+            System.out.println(listLapangan1.toString());
+            System.out.println(listLapangan1.getJadwal(0, 14).getPenyewa().toString());
+        }
+        
     }
 }
