@@ -31,11 +31,13 @@ public class GUI extends javax.swing.JFrame {
         try {
             tf.setListLapangan(db.loadLapangan());
             tf.setListMember(db.loadMember());
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
         
         refreshLapangan();
+        resetMember();
     }
 
     public void setupDatabase() {
@@ -101,22 +103,22 @@ public class GUI extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         KelolaMember = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        fieldUsenameMember = new javax.swing.JTextField();
+        fieldPasswordMember = new javax.swing.JTextField();
+        fieldNamaMember = new javax.swing.JTextField();
+        fieldUmurMember = new javax.swing.JSpinner();
+        btnAddMember = new javax.swing.JButton();
+        btnEditMember = new javax.swing.JButton();
+        btnDeleteMember = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
+        TableMember = new javax.swing.JTable();
+        btnCancelMember = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        btnSearchMember = new javax.swing.JButton();
         KelolaJadwal = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
@@ -135,6 +137,8 @@ public class GUI extends javax.swing.JFrame {
         btnMember = new javax.swing.JButton();
         btnLapangan = new javax.swing.JButton();
         btnJadwal = new javax.swing.JButton();
+        Label1 = new javax.swing.JLabel();
+        labelUsername = new javax.swing.JLabel();
 
         DialogLogin.setTitle("Login\n");
 
@@ -317,7 +321,7 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jButton8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         KelolaLapanganLayout.setVerticalGroup(
             KelolaLapanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,26 +352,51 @@ public class GUI extends javax.swing.JFrame {
 
         Admin.add(KelolaLapangan, "card3");
 
-        jButton1.setText("Add");
+        btnAddMember.setText("Add");
+        btnAddMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddMemberActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Edit");
+        btnEditMember.setText("Edit");
+        btnEditMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditMemberActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Delete");
+        btnDeleteMember.setText("Delete");
+        btnDeleteMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteMemberActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TableMember.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        TableMember.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableMemberMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TableMember);
 
-        jButton4.setText("Cancel");
+        btnCancelMember.setText("Cancel");
+        btnCancelMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelMemberActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Username");
 
@@ -377,82 +406,77 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel7.setText("Umur");
 
-        jTextField4.setText("Search");
-
-        jButton5.setText("Search");
+        btnSearchMember.setText("Search");
 
         javax.swing.GroupLayout KelolaMemberLayout = new javax.swing.GroupLayout(KelolaMember);
         KelolaMember.setLayout(KelolaMemberLayout);
         KelolaMemberLayout.setHorizontalGroup(
             KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KelolaMemberLayout.createSequentialGroup()
-                .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KelolaMemberLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48))
-                    .addGroup(KelolaMemberLayout.createSequentialGroup()
+                .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, KelolaMemberLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(btnAddMember)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(btnEditMember)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(btnDeleteMember)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)))
+                        .addComponent(btnCancelMember))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, KelolaMemberLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldUsenameMember, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldPasswordMember, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldNamaMember, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldUmurMember, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(KelolaMemberLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5)))
-                .addGap(24, 24, 24))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearchMember))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE))
+                .addContainerGap())
         );
         KelolaMemberLayout.setVerticalGroup(
             KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KelolaMemberLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldUsenameMember, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(btnSearchMember))
+                .addGap(6, 6, 6)
                 .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(KelolaMemberLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65))
-                    .addGroup(KelolaMemberLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldPasswordMember, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldNamaMember, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(fieldUmurMember, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
                         .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(35, 35, 35)
-                        .addGroup(KelolaMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnAddMember)
+                            .addComponent(btnEditMember)
+                            .addComponent(btnDeleteMember)
+                            .addComponent(btnCancelMember)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         Admin.add(KelolaMember, "card2");
@@ -518,7 +542,7 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(Tersedia)
                             .addComponent(jRadioButton2))))
                 .addGap(64, 64, 64)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                 .addContainerGap())
         );
         KelolaJadwalLayout.setVerticalGroup(
@@ -588,33 +612,49 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        Label1.setText("Welcome ,");
+
+        labelUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout ToolbarLayout = new javax.swing.GroupLayout(Toolbar);
         Toolbar.setLayout(ToolbarLayout);
         ToolbarLayout.setHorizontalGroup(
             ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ToolbarLayout.createSequentialGroup()
+            .addGroup(ToolbarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnHome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnMember)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLapangan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnJadwal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ToolbarLayout.createSequentialGroup()
+                        .addComponent(btnHome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnMember)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLapangan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnJadwal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ToolbarLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Label1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         ToolbarLayout.setVerticalGroup(
             ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ToolbarLayout.createSequentialGroup()
-                .addGap(0, 77, Short.MAX_VALUE)
-                .addGroup(ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnHome)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMember)
-                    .addComponent(btnLapangan)
-                    .addComponent(btnJadwal)))
+            .addGroup(ToolbarLayout.createSequentialGroup()
+                .addGap(0, 48, Short.MAX_VALUE)
+                .addGroup(ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnHome)
+                        .addComponent(btnMember)
+                        .addComponent(btnLapangan)
+                        .addComponent(btnJadwal))
+                    .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -635,8 +675,14 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void loginMember(String username, String password){
-        
+    public void loginMember(String username, String password) throws SQLException{
+        int i = tf.searchMember(username);
+        if (i >= 0){
+            Member m = tf.getMember(i);
+            if(m.getPassword().equals(db.encryptPassword(password))){
+                OrangAktif = m;
+            }
+        }
     }
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
@@ -665,6 +711,7 @@ public class GUI extends javax.swing.JFrame {
         KelolaLapangan.setVisible(false);
         KelolaMember.setVisible(true);
         KelolaJadwal.setVisible(false);
+        refreshMember();
     }//GEN-LAST:event_btnMemberActionPerformed
 
     private void btnLapanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapanganActionPerformed
@@ -690,8 +737,18 @@ public class GUI extends javax.swing.JFrame {
         if (fieldUsername.getText().equals("admin") && fieldPassword.getText().equals("admin")) {
             OrangAktif = new Admin("Admin", 99);
             cekmenu();
+            Label1.setVisible(true);
+            labelUsername.setVisible(true);
+            labelUsername.setText("Admin");
         } else {
-            
+            try {
+                loginMember(fieldUsername.getText(),fieldPassword.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Label1.setVisible(true);
+            labelUsername.setVisible(true);
+            labelUsername.setText(fieldUsername.getText());
         }
         DialogLogin.setVisible(false);
         fieldUsername.setText(null);
@@ -734,34 +791,72 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonPesanBatalActionPerformed
 
+    private void btnAddMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMemberActionPerformed
+        // TODO add your handling code here:
+        Member m = new Member(fieldUsenameMember.getText(),fieldPasswordMember.getText(),fieldNamaMember.getText(),(int)fieldUmurMember.getValue());
+        try {
+            db.addMember(m);
+            tf.setListMember(db.loadMember());
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        fieldUsenameMember.setText("");
+        fieldPasswordMember.setText("");
+        fieldNamaMember.setText("");
+        fieldUmurMember.setValue(0);
+        refreshMember();
+        
+    }//GEN-LAST:event_btnAddMemberActionPerformed
+
+    private void TableMemberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableMemberMouseClicked
+        // TODO add your handling code here:
+        Member m = tf.getMember(TableMember.getSelectedRow());
+        fieldUsenameMember.setText(m.getUsername());
+        fieldPasswordMember.setEnabled(false);
+        fieldPasswordMember.setText(m.getPassword());
+        fieldNamaMember.setText(m.getNama());
+        fieldUmurMember.setValue(m.getUmur());
+        btnEditMember.setVisible(true);
+        btnDeleteMember.setVisible(true);
+        btnAddMember.setVisible(false);
+    }//GEN-LAST:event_TableMemberMouseClicked
+
+    private void btnCancelMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelMemberActionPerformed
+        // TODO add your handling code here:
+        resetMember();
+    }//GEN-LAST:event_btnCancelMemberActionPerformed
+
+    private void btnDeleteMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteMemberActionPerformed
+        // TODO add your handling code here:
+        Member m = tf.getMember(TableMember.getSelectedRow());
+        try {
+            db.deleteMember(m);
+            tf.setListMember(db.loadMember());
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        resetMember();
+    }//GEN-LAST:event_btnDeleteMemberActionPerformed
+
+    private void btnEditMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMemberActionPerformed
+        // TODO add your handling code here:
+        Member m = tf.getMember(TableMember.getSelectedRow());
+        m.setUsername(fieldUsenameMember.getText());
+        m.setUmur((int)fieldUmurMember.getValue());
+        m.setNama(fieldNamaMember.getText());
+        try {
+            db.editMember(m);
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        resetMember();
+    }//GEN-LAST:event_btnEditMemberActionPerformed
+
     public void refreshLapangan() {
         jComboBox1.removeAllItems();
-        ArrayList<Lapangan> listLapangan = null;
-        try {
-            listLapangan = db.loadLapangan();
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(rootPane, e.getMessage());
-        }
-        int counter = 0;
-        //Mengisi llistLapangan dari Tempat Futsal
-        for (Lapangan listLapangan1 : listLapangan) {
-            int jenis = 0;
-            if (listLapangan1 instanceof Vinyl) {
-                jenis = 1;
-            }
-            tf.createLapangan(jenis, listLapangan1.getLebar(), listLapangan1.getPanjang());
-            tf.getLapangan(counter).setId_lapangan(listLapangan1.getId_lapangan());
-            try {
-                db.loadJadwalLapangan(tf.getLapangan(counter));
-            } catch (SQLException ex) {
-            }
-            counter++;
-        }
-        for (int i = 0; i < tf.getJumlahLapangan(); i++) {
+                for (int i = 0; i < tf.getJumlahLapangan(); i++) {
             jComboBox1.addItem(tf.getLapangan(i).toString());
         }
-        jComboBox1.setSelectedIndex(0);
-        refreshJadwalLapangan(jComboBox1.getSelectedIndex());
     }
 
     public void refreshJadwalLapangan(int indexLapangan) {
@@ -776,6 +871,29 @@ public class GUI extends javax.swing.JFrame {
             }
         }
         TabelLapangan.setModel(new DefaultTableModel(data, title));
+    }
+    
+    public void refreshMember(){
+        String[] title = { "Username","Nama","Umur"};
+        String[][] data = new String[tf.getJumlahMember()][title.length];
+        for (int i = 0; i < tf.getJumlahMember(); i++) {
+            data[i][0] = tf.getMember(i).getUsername();
+            data[i][1] = tf.getMember(i).getNama();
+            data[i][2] = tf.getMember(i).getUmur()+ "";
+        }
+        TableMember.setModel(new DefaultTableModel(data, title));
+    }
+    
+    public void resetMember(){
+        btnAddMember.setVisible(true);
+        btnEditMember.setVisible(false);
+        btnDeleteMember.setVisible(false);
+        fieldUsenameMember.setText("");
+        fieldPasswordMember.setText("");
+        fieldNamaMember.setText("");
+        fieldUmurMember.setValue(0);
+        TableMember.clearSelection();
+        refreshMember();
     }
 
     /**
@@ -820,6 +938,8 @@ public class GUI extends javax.swing.JFrame {
         Home.setVisible(true);
         if (OrangAktif == null) {
             btnLogin.setText("Login");
+            Label1.setVisible(false);
+            labelUsername.setVisible(false);
         } else {
             btnLogin.setText("Logout");
         }
@@ -854,27 +974,33 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel KelolaJadwal;
     private javax.swing.JPanel KelolaLapangan;
     private javax.swing.JPanel KelolaMember;
+    private javax.swing.JLabel Label1;
     private javax.swing.JTable TabelLapangan;
+    private javax.swing.JTable TableMember;
     private javax.swing.JRadioButton Tersedia;
     private javax.swing.JPanel Toolbar;
     private javax.swing.JPanel Utama;
+    private javax.swing.JButton btnAddMember;
+    private javax.swing.JButton btnCancelMember;
+    private javax.swing.JButton btnDeleteMember;
+    private javax.swing.JButton btnEditMember;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnJadwal;
     private javax.swing.JButton btnLapangan;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnLoginPopUp;
     private javax.swing.JButton btnMember;
+    private javax.swing.JButton btnSearchMember;
+    private javax.swing.JTextField fieldNamaMember;
     private javax.swing.JPasswordField fieldPassword;
+    private javax.swing.JTextField fieldPasswordMember;
+    private javax.swing.JSpinner fieldUmurMember;
+    private javax.swing.JTextField fieldUsenameMember;
     private javax.swing.JTextField fieldUsername;
     private javax.swing.ButtonGroup grup;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -899,16 +1025,12 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel labelUsername;
     // End of variables declaration//GEN-END:variables
 }
