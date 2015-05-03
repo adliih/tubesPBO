@@ -46,6 +46,14 @@ public class TempatFutsal {
     public int getJumlahMember(){
         return listMember.size();
     }
+
+    public void setListLapangan(ArrayList<Lapangan> listLapangan) {
+        this.listLapangan = listLapangan;
+    }
+
+    public void setListMember(ArrayList<Member> listMember) {
+        this.listMember = listMember;
+    }
     
 //    Membuat Lapangan Baru
 //    0 = Lapangan Sintetis

@@ -28,6 +28,13 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
         cekmenu();
         setupDatabase();
+        try {
+            tf.setListLapangan(db.loadLapangan());
+            tf.setListMember(db.loadMember());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
+        
         refreshLapangan();
     }
 
@@ -628,6 +635,9 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void loginMember(String username, String password){
+        
+    }
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         if (btnLogin.getText().equals("Login")) {
@@ -681,12 +691,7 @@ public class GUI extends javax.swing.JFrame {
             OrangAktif = new Admin("Admin", 99);
             cekmenu();
         } else {
-            try {
-                //Pengecekan dengan database member
-                OrangAktif = db.loginMember(fieldUsername.getText(), fieldPassword.getText());
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-            }
+            
         }
         DialogLogin.setVisible(false);
         fieldUsername.setText(null);

@@ -29,18 +29,19 @@ public class Database {
         statement = connection.createStatement();
     }
     
-    public Member loginMember(String username, String password) throws SQLException{
-        Member m = null;
-        String sql = "SELECT * FROM member WHERE username = '" + username + "' AND password = PASSWORD('" + password + "')";
-        resultSet = statement.executeQuery(sql);
-        while (resultSet.next()) {
-            m = new Member (resultSet.getString("username"), resultSet.getString("password"), resultSet.getString("nama"), resultSet.getInt("umur"));
-        }
-        return m;
-    }
     public void addMember(Member m) throws SQLException{
         String sql = "INSERT INTO member VALUES (NULL, TRUE, '" + m.getNama() + "' , " + m.getUmur() + " , '" + m.getUsername() +"', PASSWORD('" + m.getPassword() + "'))";
         statement.execute(sql);
+    }
+    
+    public String encryptPassword(String password) throws SQLException{
+        String pass = null;
+        String sql = "SELECT PASSWORD('" + password + "') as pass FROM DUAL";
+        resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            pass = resultSet.getString("pass");
+        }
+        return pass;
     }
     
     public ArrayList<Member> loadMember() throws SQLException{
